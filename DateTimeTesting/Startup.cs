@@ -68,11 +68,6 @@ namespace DateTimeTesting
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-
-            SqlMapper.RemoveTypeMap(typeof(DateTime));
-            //SqlMapper.RemoveTypeMap(typeof(DateTime?));
-            SqlMapper.AddTypeHandler(new UtcDateTimeHandler());
-            //SqlMapper.AddTypeHandler(new NullableUtcDateTimeHandler());
         }
     }
 }

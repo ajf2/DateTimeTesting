@@ -1,1 +1,0 @@
-﻿ALTER TABLE DateTimeTesting ALTER COLUMN [Timestamp] DATETIME NULL

@@ -28,8 +28,8 @@ namespace DateTimeTesting.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbNow = connection.QuerySingle<DateTimeTest>(@"
-                    INSERT INTO DateTimeTesting ([Timestamp], SecondDateTime) VALUES (@now, @now)
-                    SELECT TOP 1 Id, [Timestamp], SecondDateTime FROM DateTimeTesting
+                    INSERT INTO DateTimeTesting ([Timestamp], SecondDateTimeOffset) VALUES (@now, @now)
+                    SELECT TOP 1 Id, [Timestamp], SecondDateTimeOffset AS SecondDateTime FROM DateTimeTesting
                 ", new {now});
                 return dbNow;
             }
@@ -42,7 +42,7 @@ namespace DateTimeTesting.Controllers
             {
                 var dbdateTime = connection.QuerySingle<DateTimeTest>(@"
                     INSERT INTO DateTimeTesting ([Timestamp]) VALUES (@dateTime)
-                    SELECT TOP 1 Id, [Timestamp], SecondDateTime FROM DateTimeTesting
+                    SELECT TOP 1 Id, [Timestamp], SecondDateTimeOffset AS SecondDateTime FROM DateTimeTesting
                 ", new { dateTime });
                 return dbdateTime;
             }
@@ -54,7 +54,7 @@ namespace DateTimeTesting.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbdateTime = connection.QuerySingle<DateTimeTest>(@"
-                    SELECT TOP 1 Id, [Timestamp], SecondDateTime FROM DateTimeTesting
+                    SELECT TOP 1 Id, [Timestamp], SecondDateTimeOffset AS SecondDateTime FROM DateTimeTesting
                 ");
                 return dbdateTime;
             }
@@ -66,7 +66,7 @@ namespace DateTimeTesting.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbdateTimes = connection.Query<DateTimeTest>(@"
-                    SELECT Id, [Timestamp], SecondDateTime FROM DateTimeTesting ORDER BY Id
+                    SELECT Id, [Timestamp], SecondDateTimeOffset AS SecondDateTime FROM DateTimeTesting ORDER BY Id
                 ");
                 return dbdateTimes;
             }
