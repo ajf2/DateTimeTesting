@@ -1,0 +1,26 @@
+<h1 id="tableLabel">DateTime Testing</h1>
+
+<p>This component demonstrates how DateTimes are sent to/retreived from the server.</p>
+
+<p *ngIf="!dateTimes"><em>Loading...</em></p>
+
+<div *ngIf="dateTimes">
+  <button (click)="setNow()">Set Now</button>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="dateTimes">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Timestamp</th>
+      <th>Second DateTime</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let dateTimeTest of dateTimes">
+    <td>{{ dateTimeTest.id }}</td>
+    <td>{{ dateTimeTest.timestamp }}</td>
+    <td>{{ dateTimeTest.secondDateTime }}</td>
+  </tr>
+  </tbody>
+</table>

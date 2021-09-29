@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeTesting", "DateTimeTesting\DateTimeTesting.csproj", "{5EB73104-7BB5-472C-98C3-64D3C9A98C4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbUp", "DbUp\DbUp.csproj", "{637B61CF-E555-433C-AAA6-6CB0FB8E7A41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EB73104-7BB5-472C-98C3-64D3C9A98C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EB73104-7BB5-472C-98C3-64D3C9A98C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EB73104-7BB5-472C-98C3-64D3C9A98C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EB73104-7BB5-472C-98C3-64D3C9A98C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{637B61CF-E555-433C-AAA6-6CB0FB8E7A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{637B61CF-E555-433C-AAA6-6CB0FB8E7A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{637B61CF-E555-433C-AAA6-6CB0FB8E7A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{637B61CF-E555-433C-AAA6-6CB0FB8E7A41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FE3FC72-3E79-4C1F-8866-F10C29F430C8}
+	EndGlobalSection
+EndGlobal

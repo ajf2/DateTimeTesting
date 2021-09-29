@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\AddId.sql" />
+    <None Remove="Scripts\AddSecondDateTime.sql" />
+    <None Remove="Scripts\Init.sql" />
+    <None Remove="Scripts\Nullability.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\AddId.sql" />
+    <EmbeddedResource Include="Scripts\AddSecondDateTime.sql" />
+    <EmbeddedResource Include="Scripts\Init.sql" />
+    <EmbeddedResource Include="Scripts\Nullability.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup-sqlserver" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>
