@@ -8,7 +8,7 @@ namespace DateTimeTesting
     public class DateTimeTest
     {
         public int Id { get; set; }
-        public DateTime? Timestamp { get; set; }
-        public DateTime? SecondDateTime { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
+        public DateTimeOffset? NullableTimestamp { get; set; }
     }
 }

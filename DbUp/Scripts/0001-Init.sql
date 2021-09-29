@@ -1,5 +1,5 @@
 ﻿CREATE TABLE DateTimeTesting (
 	Id INT IDENTITY (1,1),
-	[Timestamp] DATETIMEOFFSET NULL,
-	SecondDateTimeOffset DATETIMEOFFSET NULL
+	[Timestamp] DATETIMEOFFSET,
+	NullableTimestamp DATETIMEOFFSET NULL
 )

@@ -15,7 +15,13 @@ export class DateTimeTestingComponent {
     }, error => console.error(error));
   }
 
-  setNow() {
+  setNowFromClient() {
+    this.http.post<DateTimeTest>(this.baseUrl + 'dateTimeTesting/setDate', new Date()).subscribe(result => {
+      this.dateTimes.push(result);
+    }, error => console.error(error));
+  }
+
+  setNowFromServer() {
     this.http.get<DateTimeTest>(this.baseUrl + 'dateTimeTesting/setNow').subscribe(result => {
       this.dateTimes.push(result);
     }, error => console.error(error));

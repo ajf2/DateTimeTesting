@@ -24,25 +24,24 @@ namespace DateTimeTesting.Controllers
         [HttpGet, Route("setNow")]
         public DateTimeTest SetNow()
         {
-            var now = DateTime.UtcNow;
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbNow = connection.QuerySingle<DateTimeTest>(@"
-                    INSERT INTO DateTimeTesting ([Timestamp], SecondDateTimeOffset) VALUES (@now, @now)
-                    SELECT TOP 1 Id, [Timestamp], SecondDateTimeOffset AS SecondDateTime FROM DateTimeTesting
-                ", new {now});
+                    INSERT INTO DateTimeTesting ([Timestamp]) VALUES (@now)
+                    SELECT Id, [Timestamp], NullableTimestamp FROM DateTimeTesting WHERE Id = SCOPE_IDENTITY()
+                ", new { now = DateTime.UtcNow });
                 return dbNow;
             }
         }
 
-        [HttpGet, Route("setDate")]
-        public DateTimeTest SetDate(DateTime dateTime)
+        [HttpPost, Route("setDate")]
+        public DateTimeTest SetDate([FromBody]DateTime dateTime)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbdateTime = connection.QuerySingle<DateTimeTest>(@"
                     INSERT INTO DateTimeTesting ([Timestamp]) VALUES (@dateTime)
-                    SELECT TOP 1 Id, [Timestamp], SecondDateTimeOffset AS SecondDateTime FROM DateTimeTesting
+                    SELECT Id, [Timestamp], NullableTimestamp FROM DateTimeTesting WHERE Id = SCOPE_IDENTITY()
                 ", new { dateTime });
                 return dbdateTime;
             }
@@ -54,7 +53,7 @@ namespace DateTimeTesting.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbdateTime = connection.QuerySingle<DateTimeTest>(@"
-                    SELECT TOP 1 Id, [Timestamp], SecondDateTimeOffset AS SecondDateTime FROM DateTimeTesting
+                    SELECT TOP 1 Id, [Timestamp], NullableTimestamp FROM DateTimeTesting
                 ");
                 return dbdateTime;
             }
@@ -66,7 +65,7 @@ namespace DateTimeTesting.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbdateTimes = connection.Query<DateTimeTest>(@"
-                    SELECT Id, [Timestamp], SecondDateTimeOffset AS SecondDateTime FROM DateTimeTesting ORDER BY Id
+                    SELECT Id, [Timestamp], NullableTimestamp FROM DateTimeTesting ORDER BY Id
                 ");
                 return dbdateTimes;
             }

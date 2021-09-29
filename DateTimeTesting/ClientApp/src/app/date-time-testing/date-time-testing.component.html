@@ -5,7 +5,8 @@
 <p *ngIf="!dateTimes"><em>Loading...</em></p>
 
 <div *ngIf="dateTimes">
-  <button (click)="setNow()">Set Now</button>
+  <button (click)="setNowFromServer()">Set Now in Server TZ</button>
+  <button (click)="setNowFromClient()">Set Now in Client TZ</button>
 </div>
 
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="dateTimes">
@@ -13,14 +14,14 @@
     <tr>
       <th>Id</th>
       <th>Timestamp</th>
-      <th>Second DateTime</th>
+      <th>Nullable Timestamp</th>
     </tr>
   </thead>
   <tbody>
   <tr *ngFor="let dateTimeTest of dateTimes">
     <td>{{ dateTimeTest.id }}</td>
     <td>{{ dateTimeTest.timestamp }}</td>
-    <td>{{ dateTimeTest.secondDateTime }}</td>
+    <td>{{ dateTimeTest.nullableTimestamp }}</td>
   </tr>
   </tbody>
 </table>
