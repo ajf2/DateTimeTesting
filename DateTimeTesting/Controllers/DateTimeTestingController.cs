@@ -26,35 +26,31 @@ namespace DateTimeTesting.Controllers
         {
             using (var connection = new SqlConnection(connectionString))
             {
+                var dtOffset = DateTimeOffset.UtcNow;
+                var dt = DateTime.UtcNow;
                 var dbNow = connection.QuerySingle<DateTimeTest>(@"
-                    INSERT INTO DateTimeTesting ([Timestamp]) VALUES (@now)
-                    SELECT Id, [Timestamp], NullableTimestamp FROM DateTimeTesting WHERE Id = SCOPE_IDENTITY()
-                ", new { now = DateTime.UtcNow });
+                    INSERT INTO DateTimeTesting ([Timestamp], NullableTimestamp, TimeZoneId, TimeZoneOffset) VALUES (@dtOffset, @dt, @id, @offset)
+                    SELECT * FROM DateTimeTesting WHERE Id = SCOPE_IDENTITY()
+                ", new { dtOffset, dt, id = "UTC", offset = "Z" });
                 return dbNow;
             }
         }
 
         [HttpPost, Route("setDate")]
-        public DateTimeTest SetDate([FromBody]DateTime dateTime)
+        public DateTimeTest SetDate([FromBody]DateTimeWithTzInfo dateTimeWithTzInfo)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbdateTime = connection.QuerySingle<DateTimeTest>(@"
-                    INSERT INTO DateTimeTesting ([Timestamp]) VALUES (@dateTime)
-                    SELECT Id, [Timestamp], NullableTimestamp FROM DateTimeTesting WHERE Id = SCOPE_IDENTITY()
-                ", new { dateTime });
-                return dbdateTime;
-            }
-        }
-
-        [HttpGet, Route("getDate")]
-        public DateTimeTest GetDate()
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                var dbdateTime = connection.QuerySingle<DateTimeTest>(@"
-                    SELECT TOP 1 Id, [Timestamp], NullableTimestamp FROM DateTimeTesting
-                ");
+                    INSERT INTO DateTimeTesting ([Timestamp], NullableTimestamp, TimeZoneId, TimeZoneOffset) VALUES (@dtOffset, @dt, @id, @offset)
+                    SELECT * FROM DateTimeTesting WHERE Id = SCOPE_IDENTITY()
+                ", new
+                {
+                    dtOffset = dateTimeWithTzInfo.Timestamp,
+                    dt = dateTimeWithTzInfo.Timestamp.UtcDateTime,
+                    id = dateTimeWithTzInfo.TimeZoneId,
+                    offset = dateTimeWithTzInfo.TimeZoneOffset
+                });
                 return dbdateTime;
             }
         }
@@ -65,8 +61,8 @@ namespace DateTimeTesting.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 var dbdateTimes = connection.Query<DateTimeTest>(@"
-                    SELECT Id, [Timestamp], NullableTimestamp FROM DateTimeTesting ORDER BY Id
-                ");
+                    SELECT * FROM DateTimeTesting ORDER BY Id
+                ").ToList();
                 return dbdateTimes;
             }
         }

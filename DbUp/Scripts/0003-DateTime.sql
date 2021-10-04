@@ -1,0 +1,3 @@
+﻿ALTER TABLE DateTimeTesting
+ALTER
+	COLUMN NullableTimestamp DATETIME NULL

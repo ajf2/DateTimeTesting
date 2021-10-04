@@ -7,9 +7,13 @@
 
   <ItemGroup>
     <None Remove="Scripts\0001-Init.sql" />
+    <None Remove="Scripts\0002-TimeZones.sql" />
+    <None Remove="Scripts\0003-DateTime.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\0003-DateTime.sql" />
+    <EmbeddedResource Include="Scripts\0002-TimeZones.sql" />
     <EmbeddedResource Include="Scripts\0001-Init.sql" />
   </ItemGroup>
 
